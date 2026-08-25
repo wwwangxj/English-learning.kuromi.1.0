@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuromi 英语闯关 · 四年级上册</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- 可复用 SVG 部件：骷髅徽章、库洛米角色 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- 粉色骷髅徽章 -->
+    <g id="skull">
+      <ellipse cx="0" cy="-2" rx="11" ry="12" fill="#ff8fb3"/>
+      <ellipse cx="-5.5" cy="1" rx="4.5" ry="6" fill="#ffb3cc"/>
+      <ellipse cx="5.5" cy="1" rx="4.5" ry="6" fill="#ffb3cc"/>
+      <circle cx="-3.6" cy="-5" r="2.2" fill="#5c1f38"/>
+      <circle cx="3.6" cy="-5" r="2.2" fill="#5c1f38"/>
+      <rect x="-3" y="6" width="6" height="4" rx="1" fill="#fff"/>
+      <rect x="-5" y="7" width="2.6" height="3.4" rx="1" fill="#fff"/>
+      <rect x="2.4" y="7" width="2.6" height="3.4" rx="1" fill="#fff"/>
+    </g>
+    <!-- 库洛米风格角色（致敬三丽鸥形象：黑贝雷帽·粉骷髅·恶魔尾） -->
+    <g id="kuromi">
+      <!-- 恶魔尾巴 -->
+      <path d="M118,196 C150,192 168,170 166,142 C165,128 158,120 150,122" fill="none" stroke="#22222a" stroke-width="9" stroke-linecap="round" class="tail"/>
+      <path d="M166,142 L176,138 L170,150 Z" fill="#22222a"/>
+      <!-- 身体 -->
+      <path d="M100,128 C142,128 150,150 150,196 L50,196 C50,150 58,128 100,128 Z" fill="#22222a"/>
+      <path d="M100,132 C134,132 142,150 142,192 L58,192 C58,150 66,132 100,132 Z" fill="#2c2c36"/>
+      <use href="#skull" x="100" y="160" transform="translate(-11,-9) scale(0.95)"/>
+      <!-- 领口白边 -->
+      <path d="M84,132 Q100,146 116,132 Q100,138 84,132 Z" fill="#fdfdfc"/>
+      <!-- 耳朵 -->
+      <path d="M58,52 L38,14 L78,30 Z" fill="#22222a" class="ear"/>
+      <path d="M58,46 L46,22 L72,32 Z" fill="#ff8fb3" opacity="0.85"/>
+      <path d="M142,52 L162,14 L122,30 Z" fill="#22222a" class="ear"/>
+      <path d="M142,46 L154,22 L128,32 Z" fill="#ff8fb3" opacity="0.85"/>
+      <!-- 脸 -->
+      <ellipse cx="100" cy="84" rx="56" ry="50" fill="#fdfdfc"/>
+      <!-- 贝雷帽 -->
+      <path d="M38,52 C38,18 78,6 122,8 C162,10 166,34 162,52 C140,42 60,42 38,52 Z" fill="#22222a" class="beret"/>
+      <path d="M38,52 C60,44 140,44 162,52 C150,60 50,60 38,52 Z" fill="#1a1a22"/>
+      <use href="#skull" x="128" y="30" transform="translate(-8,-8) scale(0.72)"/>
+      <!-- 眼睛 -->
+      <g class="eye">
+        <circle cx="80" cy="84" r="11" fill="#22222a"/>
+        <circle cx="84" cy="80" r="3.4" fill="#fff"/>
+      </g>
+      <g class="eye">
+        <circle cx="120" cy="84" r="11" fill="#22222a"/>
+        <circle cx="124" cy="80" r="3.4" fill="#fff"/>
+      </g>
+      <!-- 腮红 -->
+      <ellipse cx="62" cy="102" rx="11" ry="6.5" fill="#ff8fb3" opacity="0.55"/>
+      <ellipse cx="138" cy="102" rx="11" ry="6.5" fill="#ff8fb3" opacity="0.55"/>
+      <!-- 鼻子 -->
+      <ellipse cx="100" cy="94" rx="3.4" ry="2.8" fill="#22222a"/>
+      <!-- 嘴巴 -->
+      <path d="M90,108 Q100,118 110,108 Q100,112 90,108 Z" fill="#22222a" class="mouth"/>
+      <!-- 蝴蝶结 -->
+      <path d="M158,60 Q172,52 170,64 Q168,74 154,70 Q150,62 158,60 Z" fill="#ff8fb3"/>
+      <path d="M158,60 Q146,54 148,66 Q150,74 162,68 Q164,62 158,60 Z" fill="#ffa8c8"/>
+      <circle cx="158" cy="63" r="3.4" fill="#e0608c"/>
+      <!-- 手 -->
+      <ellipse cx="64" cy="172" rx="9" ry="13" fill="#fdfdfc" transform="rotate(18 64 172)"/>
+      <ellipse cx="136" cy="172" rx="9" ry="13" fill="#fdfdfc" transform="rotate(-18 136 172)"/>
+      <!-- 脚 -->
+      <ellipse cx="78" cy="198" rx="14" ry="6" fill="#22222a"/>
+      <ellipse cx="122" cy="198" rx="14" ry="6" fill="#22222a"/>
+    </g>
+  </defs>
+</svg>
+
+<div id="app">
+
+  <!-- 顶栏 -->
+  <header id="topbar">
+    <div class="brand" data-view="home">
+      <svg class="mini-kuromi" viewBox="0 0 200 210" width="34" height="36" aria-hidden="true">
+        <use href="#kuromi" transform="scale(0.9) translate(11,14)"/>
+      </svg>
+      <span class="brand-name">Kuromi 英语闯关</span>
+      <span class="brand-tag">四年级上册 · 人教PEP(2024)</span>
+    </div>
+    <nav id="nav">
+      <button class="nav-btn" data-view="home">首页</button>
+      <button class="nav-btn" data-view="units">单元</button>
+      <button class="nav-btn" data-view="review">复习</button>
+      <button class="nav-btn" data-view="settings">设置</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- 首次进入：起点设定 -->
+    <section id="view-onboard" class="view">
+      <div class="onboard-box">
+        <svg viewBox="0 0 200 210" width="150" height="158" class="kuromi-bounce" aria-hidden="true">
+          <use href="#kuromi" transform="scale(0.9) translate(11,14)"/>
+        </svg>
+        <h2>嗨！我是库洛米（Kuromi）</h2>
+        <p class="onboard-desc">我可不是什么好惹的角色——但我会陪你闯完四年级上册的每一关。<br>先告诉我，你叫什么名字？</p>
+        <input id="onboardName" type="text" maxlength="8" placeholder="输入你的名字">
+        <p class="onboard-desc">你想从第几单元开始闯？<br><span class="dim">前面的单元会自动标记为「已会」，并按记忆计划安排复习。</span></p>
+        <div id="onboardUnits" class="unit-picker"></div>
+        <button id="onboardGo" class="btn big pink">开始冒险！Let's go!</button>
+      </div>
+    </section>
+
+    <!-- 首页 -->
+    <section id="view-home" class="view hidden">
+      <div class="home-hero">
+        <div class="hero-left">
+          <svg viewBox="0 0 200 210" width="170" height="180" class="kuromi-bounce" id="heroKuromi" aria-hidden="true">
+            <use href="#kuromi" transform="scale(0.9) translate(11,14)"/>
+          </svg>
+        </div>
+        <div class="hero-right">
+          <div id="speechBubble" class="speech-bubble">
+            <p id="speechText">哼，今天也要好好学哦！</p>
+          </div>
+          <h1 id="homeTitle">可聿，准备好闯关了吗？</h1>
+          <div class="home-stats">
+            <div class="stat"><span class="stat-num" id="statNew">0</span><span class="stat-label">新学单词</span></div>
+            <div class="stat"><span class="stat-num" id="statDue">0</span><span class="stat-label">待复习</span></div>
+            <div class="stat"><span class="stat-num" id="statDone">0</span><span class="stat-label">已掌握</span></div>
+            <div class="stat"><span class="stat-num" id="statBadge">0</span><span class="stat-label">骷髅徽章</span></div>
+          </div>
+          <div class="home-actions">
+            <button class="btn big pink" id="btnStartQuiz">🎮 开始闯关</button>
+            <button class="btn big" id="btnGoReview">📖 去复习</button>
+            <button class="btn big ghost" id="btnGoUnits">🗺️ 单元地图</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 单元地图 -->
+    <section id="view-units" class="view hidden">
+      <div class="page-head">
+        <h2>单元地图</h2>
+        <p class="page-desc">选一个单元开始闯关，或用「标记已会」跳过已学内容（仍会进入记忆复习）。</p>
+      </div>
+      <div id="unitGrid" class="unit-grid"></div>
+    </section>
+
+    <!-- 闯关 -->
+    <section id="view-quiz" class="view hidden">
+      <div class="quiz-head">
+        <span id="quizUnitLabel" class="quiz-unit-label"></span>
+        <div class="quiz-progress"><div id="quizBar" class="quiz-bar"></div></div>
+        <span id="quizScore" class="quiz-score">⭐ 0</span>
+      </div>
+      <div id="quizBody" class="quiz-body"></div>
+    </section>
+
+    <!-- 复习 -->
+    <section id="view-review" class="view hidden">
+      <div class="page-head">
+        <h2>记忆复习</h2>
+        <p class="page-desc">看到中文和图片，把它大声读出来！库洛米会听你读得对不对（按记忆曲线安排）。</p>
+      </div>
+      <div id="reviewBody" class="review-body"></div>
+    </section>
+
+    <!-- 设置 -->
+    <section id="view-settings" class="view hidden">
+      <div class="page-head"><h2>设置</h2></div>
+      <div class="settings-box">
+        <div class="set-row">
+          <label>我的名字</label>
+          <input id="setName" type="text" maxlength="8">
+        </div>
+        <div class="set-row">
+          <label>发音口音</label>
+          <div class="seg">
+            <button class="seg-btn" data-accent="us">美音 🇺🇸</button>
+            <button class="seg-btn" data-accent="uk">英音 🇬🇧</button>
+          </div>
+        </div>
+        <div class="set-row">
+          <label>朗读声音</label>
+          <div class="seg">
+            <button class="seg-btn" data-voice="on">开 🔊</button>
+            <button class="seg-btn" data-voice="off">关 🔇</button>
+          </div>
+        </div>
+        <div class="set-row">
+          <label>学习起点</label>
+          <div id="setStartUnits" class="unit-picker small"></div>
+          <p class="dim set-hint">选择后，更早的单元会全部标记为「已会」并进入复习计划。</p>
+        </div>
+        <div class="set-row">
+          <label>数据</label>
+          <div class="set-actions">
+            <button class="btn small" id="btnExport">导出进度</button>
+            <button class="btn small danger" id="btnReset">重置全部进度</button>
+          </div>
+        </div>
+        <p id="setMsg" class="set-msg"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="foot">Kuromi 英语闯关 · 与人教PEP（2024版）四年级上册同步 · 语音使用浏览器在线朗读，不占用本地容量</footer>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="data/units.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

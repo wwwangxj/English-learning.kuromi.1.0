@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>意象笺 · 玉兰诗经</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- 可复用的 SVG 部件 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="petalGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fefcf7"/>
+      <stop offset="70%" stop-color="#f7f1e3"/>
+      <stop offset="100%" stop-color="#efe4cd"/>
+    </linearGradient>
+    <!-- 一朵玉兰：花瓣围绕原点朝上展开 -->
+    <g id="blossom">
+      <g fill="url(#petalGrad)" stroke="#ddd2ba" stroke-width="1.1">
+        <path d="M0,4 C-12,-12 -18,-32 -10,-50 C-5,-62 7,-62 12,-50 C20,-32 14,-12 2,4 Z" transform="rotate(0)"/>
+        <path d="M0,4 C-12,-12 -18,-32 -10,-50 C-5,-62 7,-62 12,-50 C20,-32 14,-12 2,4 Z" transform="rotate(60)"/>
+        <path d="M0,4 C-12,-12 -18,-32 -10,-50 C-5,-62 7,-62 12,-50 C20,-32 14,-12 2,4 Z" transform="rotate(120)"/>
+        <path d="M0,4 C-12,-12 -18,-32 -10,-50 C-5,-62 7,-62 12,-50 C20,-32 14,-12 2,4 Z" transform="rotate(180)"/>
+        <path d="M0,4 C-12,-12 -18,-32 -10,-50 C-5,-62 7,-62 12,-50 C20,-32 14,-12 2,4 Z" transform="rotate(240)"/>
+        <path d="M0,4 C-12,-12 -18,-32 -10,-50 C-5,-62 7,-62 12,-50 C20,-32 14,-12 2,4 Z" transform="rotate(300)"/>
+      </g>
+      <g fill="#fcf9f2" stroke="#e2d8c2" stroke-width="0.9" opacity="0.95" transform="scale(0.58) rotate(28)">
+        <path d="M0,4 C-12,-12 -18,-32 -10,-50 C-5,-62 7,-62 12,-50 C20,-32 14,-12 2,4 Z" transform="rotate(0)"/>
+        <path d="M0,4 C-12,-12 -18,-32 -10,-50 C-5,-62 7,-62 12,-50 C20,-32 14,-12 2,4 Z" transform="rotate(72)"/>
+        <path d="M0,4 C-12,-12 -18,-32 -10,-50 C-5,-62 7,-62 12,-50 C20,-32 14,-12 2,4 Z" transform="rotate(144)"/>
+        <path d="M0,4 C-12,-12 -18,-32 -10,-50 C-5,-62 7,-62 12,-50 C20,-32 14,-12 2,4 Z" transform="rotate(216)"/>
+        <path d="M0,4 C-12,-12 -18,-32 -10,-50 C-5,-62 7,-62 12,-50 C20,-32 14,-12 2,4 Z" transform="rotate(288)"/>
+      </g>
+      <circle r="8" fill="#e7d6a7" opacity="0.85"/>
+      <circle r="3.5" fill="#d9c48c" opacity="0.9"/>
+    </g>
+    <!-- 花苞 -->
+    <g id="bud">
+      <path d="M0,6 C-6,-6 -7,-20 -2,-30 C3,-20 8,-6 2,6 Z" fill="#d6c9ac" stroke="#b9ab8a" stroke-width="1"/>
+      <path d="M0,6 C-8,0 -14,-10 -13,-20 C-6,-14 -2,-6 0,6 Z" fill="#93a07f" opacity="0.8"/>
+      <path d="M0,6 C8,0 14,-10 13,-20 C6,-14 2,-6 0,6 Z" fill="#93a07f" opacity="0.8"/>
+    </g>
+    <!-- 叶子 -->
+    <g id="leaf">
+      <path d="M0,0 C12,-10 26,-12 38,-6 C28,8 12,12 0,0 Z" fill="#a7b294" opacity="0.72" stroke="#8a9577" stroke-width="0.9"/>
+      <path d="M2,-1 C14,-6 26,-7 35,-4" stroke="#8a9577" stroke-width="0.8" fill="none" opacity="0.7"/>
+    </g>
+  </defs>
+</svg>
+
+<div id="app">
+
+  <header id="topbar" class="hidden">
+    <div class="brand">
+      <svg class="brand-flower mag-flower" viewBox="-70 -70 140 140" width="30" height="30" aria-hidden="true">
+        <use href="#blossom" transform="scale(1.05)"/>
+      </svg>
+      <span class="brand-name">意象笺</span>
+    </div>
+    <nav id="nav">
+      <button class="nav-btn active" data-view="gallery">意象墙</button>
+      <button class="nav-btn" data-view="collide">碰撞</button>
+      <button class="nav-btn" data-view="notes">随想簿</button>
+      <button class="nav-btn" data-view="import">导入</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- 扉页 -->
+    <section id="view-splash">
+      <svg id="splash-art" viewBox="0 0 400 520" aria-hidden="true">
+        <path d="M60,560 C90,460 120,420 170,360 C210,310 250,260 300,190 C330,150 350,120 360,80"
+              fill="none" stroke="#7b6f5b" stroke-width="7" stroke-linecap="round"/>
+        <path d="M170,360 C155,340 140,315 128,290" fill="none" stroke="#7b6f5b" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M250,260 C270,252 290,244 312,238" fill="none" stroke="#7b6f5b" stroke-width="4" stroke-linecap="round"/>
+        <path d="M90,455 C70,435 55,415 48,392" fill="none" stroke="#7b6f5b" stroke-width="3.5" stroke-linecap="round"/>
+        <g class="mag-flower" data-bloom="1" transform="translate(165,302) rotate(-14) scale(1.25)"><use href="#blossom"/></g>
+        <g class="mag-flower" data-bloom="2" transform="translate(303,178) rotate(12) scale(1)"><use href="#blossom"/></g>
+        <g class="mag-flower" data-bloom="3" transform="translate(120,272) rotate(22) scale(0.68)"><use href="#blossom"/></g>
+        <g class="mag-flower" data-bloom="4" transform="translate(344,96) rotate(28) scale(0.5)"><use href="#bud"/></g>
+        <g class="mag-flower" data-bloom="5" transform="translate(56,428) rotate(-18) scale(0.46)"><use href="#bud"/></g>
+        <g transform="translate(215,348) rotate(-42) scale(0.8)"><use href="#leaf"/></g>
+        <g transform="translate(282,224) rotate(34) scale(0.72)"><use href="#leaf"/></g>
+        <g transform="translate(126,470) rotate(-24) scale(0.66)"><use href="#leaf"/></g>
+        <g transform="translate(326,132) rotate(58) scale(0.6)"><use href="#leaf"/></g>
+      </svg>
+      <h1 class="splash-title">意象笺</h1>
+      <p class="splash-sub">玉兰 · 诗经意象 —— 一部会落花的写作灵感簿</p>
+      <button id="enter-btn" class="btn-enter">推门而入</button>
+      <p class="splash-hint">试着点一点枝头的玉兰</p>
+    </section>
+
+    <!-- 意象墙 -->
+    <section id="view-gallery" class="view hidden">
+      <div class="page-head">
+        <h2>意象墙</h2>
+        <p class="page-desc">从《诗经》里采撷的六十枚意象。点开一枚，看它如何生长。</p>
+      </div>
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="搜意象名、出处、原文…" autocomplete="off">
+        <div class="chip-row" id="catRow"></div>
+        <div class="chip-row" id="senseRow"></div>
+        <div class="mood-wrap">
+          <button id="moodToggle" class="mood-toggle" type="button">情绪筛选 ▾</button>
+          <div id="moodPanel" class="chip-row hidden"></div>
+        </div>
+      </div>
+      <div id="grid" class="grid"></div>
+      <p id="emptyTip" class="empty-tip hidden">没有找到匹配的意象，换个筛选试试。</p>
+    </section>
+
+    <!-- 碰撞 -->
+    <section id="view-collide" class="view hidden">
+      <div class="page-head">
+        <h2>意象碰撞</h2>
+        <p class="page-desc">一枚意象 × 一个场景，让它们在彼此身上长出新的句子。</p>
+      </div>
+      <div class="collide-box">
+        <div class="mood-wrap collide-mood">
+          <button id="cmoodToggle" class="mood-toggle" type="button">情感方向 ▾（可选）</button>
+          <div id="cmoodPanel" class="chip-row hidden"></div>
+        </div>
+        <div class="collide-stage">
+          <div class="c-card c-img" id="cImgCard"></div>
+          <div class="c-x">×</div>
+          <div class="c-card c-scene" id="cSceneCard"></div>
+        </div>
+        <div class="collide-controls">
+          <button class="btn ghost" id="cRerollImg">换个意象</button>
+          <button class="btn ghost" id="cRerollScene">换个场景</button>
+          <button class="btn ghost" id="cRerollAll">重新抽取</button>
+          <button class="btn primary" id="cSpark">生成写作火花</button>
+        </div>
+        <div id="sparkBox" class="spark-box hidden">
+          <p class="spark-label">✦ 写作火花</p>
+          <p id="sparkText" class="spark-text"></p>
+        </div>
+        <div class="c-note">
+          <textarea id="cNote" rows="4" placeholder="顺着火花写点什么，或记下此刻的联想…（保存在本机）"></textarea>
+          <div class="c-note-actions">
+            <span id="cNoteState" class="note-state"></span>
+            <button class="btn small" id="cSaveNote">保存随想</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 随想簿 -->
+    <section id="view-notes" class="view hidden">
+      <div class="page-head">
+        <h2>随想簿</h2>
+        <p class="page-desc">你的积累都收在这里——卡片上的随想，与碰撞时落下的句子。</p>
+      </div>
+      <p id="notesEmpty" class="empty-tip hidden">还没有随想。去意象墙上写一张，或去碰撞一次吧。</p>
+      <div class="notes-cols">
+        <div class="notes-col">
+          <h3 class="notes-col-title">碰撞记录 <span id="collideCount" class="count-badge">0</span></h3>
+          <div id="collideList" class="notes-list"></div>
+        </div>
+        <div class="notes-col">
+          <h3 class="notes-col-title">卡片随想 <span id="cardNoteCount" class="count-badge">0</span></h3>
+          <div id="cardNoteList" class="notes-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 导入 -->
+    <section id="view-import" class="view hidden">
+      <div class="page-head">
+        <h2>导入素材</h2>
+        <p class="page-desc">预留的接口：把你自己积累的意象与场景导进来，与《诗经》的六十枚同堂。</p>
+      </div>
+      <div class="import-box">
+        <p class="import-stats">当前：内置意象 <strong id="builtinCount">60</strong> · 场景 <strong id="builtinSceneCount">12</strong>　|　已导入意象 <strong id="importedCount">0</strong> · 场景 <strong id="importedSceneCount">0</strong></p>
+        <p class="import-format">JSON 格式（两个字段都可选，同名会覆盖内置）：</p>
+        <pre class="import-code">{
+  "imagery": [
+    {
+      "name": "意象名", "category": "植物", "senses": ["视觉", "触觉"],
+      "moods": ["思念", "苍凉"], "source": "出处",
+      "text": "摘句原文", "meaning": "释义",
+      "analysis": "意象解析：为什么美、怎么用",
+      "prompt": "写作提示"
+    }
+  ],
+  "scenes": [ { "name": "场景名", "description": "场景描写" } ]
+}</pre>
+        <textarea id="importArea" rows="8" placeholder="在这里粘贴 JSON…"></textarea>
+        <div class="import-actions">
+          <button class="btn ghost" id="importFill">填入示例</button>
+          <label class="btn ghost file-label">选择 JSON 文件<input type="file" id="importFile" accept=".json,application/json" hidden></label>
+          <a class="btn ghost" id="importDl" href="data/import-example.json" download="import-example.json">下载示例文件</a>
+          <button class="btn primary" id="importBtn">导入</button>
+        </div>
+        <p id="importMsg" class="import-msg"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="hidden" id="foot">意象笺 · 以《诗经》为壤，以玉兰为灯 · 数据仅存于本机浏览器</footer>
+</div>
+
+<!-- 详情弹层 -->
+<div id="detail" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-mask" id="detailMask"></div>
+  <div class="detail-panel">
+    <button class="detail-close" id="detailClose" aria-label="关闭">✕</button>
+    <div id="detailBody"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="data/imagery1.js"></script>
+<script src="data/imagery2.js"></script>
+<script src="data/scenes.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

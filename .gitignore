@@ -1,0 +1,5 @@
+# 忽略无关文件
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
