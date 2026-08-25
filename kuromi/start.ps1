@@ -1,4 +1,4 @@
-# Kuromi 英语闯关 · 一键启动
+﻿# Kuromi 英语闯关 · 一键启动
 # 语音（朗读/识别）需要 localhost 环境，此脚本会启动本地服务器并打开浏览器
 $ErrorActionPreference = "Stop"
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
