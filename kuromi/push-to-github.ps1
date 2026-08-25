@@ -1,6 +1,6 @@
 ﻿# 一键推送到 GitHub（优先用代理，推送失败自动换代理重试）
 # 适用于中国大陆访问 GitHub 不稳定（Could not connect to server / 间歇性通断）
-$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Continue"
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 $base = Split-Path -Parent $here
 $ghUser = "wwwangxj"
@@ -88,11 +88,10 @@ foreach ($label in $attempts) {
     $desc = if ($isProxy) { "代理 $p" } else { "直连" }
     Write-Host ("   尝试 $desc ……")
     if ($isProxy) {
-        $lastOutput = git -C $base -c http.proxy="$p" -c https.proxy="$p" push -u origin main 2>&1
+        git -C $base -c http.proxy="$p" -c https.proxy="$p" push -u origin main
     } else {
-        $lastOutput = git -C $base push -u origin main 2>&1
+        git -C $base push -u origin main
     }
-    $lastOutput | ForEach-Object { Write-Host ("      " + $_) }
     if ($LASTEXITCODE -eq 0) {
         $ok = $true
         $usedProxy = $p
